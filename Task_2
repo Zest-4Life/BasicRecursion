@@ -1,1 +1,68 @@
+#include <iostream>
+using namespace std;
+
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode(int x) : val(x), next(NULL) {}
+};
+
+ListNode* swapPairsRecursive(ListNode* head) {
+    // Базовий випадок: якщо список порожній або містить лише один вузол
+    if (head == nullptr || head->next == nullptr)
+        return head;
+
+    // Обміняти місцями поточний вузол з наступним
+    ListNode* nextNode = head->next;
+    head->next = swapPairsRecursive(nextNode->next);
+    nextNode->next = head;
+    // Повертаємо змінений вузол, який став новою головою списку
+    return nextNode;
+}
+
+void printList(ListNode* head) {
+    ListNode* current = head;
+    while (current != nullptr) {
+        cout << current->val << " ";
+        current = current->next;
+    }
+    cout << endl;
+}
+
+int main() {
+    // Приклад 1: [1,2,3,4]
+    ListNode* head1 = new ListNode(1);
+    head1->next = new ListNode(2);
+    head1->next->next = new ListNode(3);
+    head1->next->next->next = new ListNode(4);
+
+    cout << "Original list: ";
+    printList(head1);
+
+    ListNode* swapped1 = swapPairsRecursive(head1);
+    cout << "Swapped list: ";
+    printList(swapped1);
+
+    // Приклад 2: []
+    ListNode* head2 = nullptr;
+
+    cout << "Original list: ";
+    printList(head2);
+
+    ListNode* swapped2 = swapPairsRecursive(head2);
+    cout << "Swapped list: ";
+    printList(swapped2);
+
+    // Приклад 3: [1]
+    ListNode* head3 = new ListNode(1);
+
+    cout << "Original list: ";
+    printList(head3);
+
+    ListNode* swapped3 = swapPairsRecursive(head3);
+    cout << "Swapped list: ";
+    printList(swapped3);
+
+    return 0;
+}
 
