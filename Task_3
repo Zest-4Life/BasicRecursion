@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+int fibonacciRecursive(int n) {
+    if (n <= 1)
+        return n;
+    return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
+}
+
+int main() {
+    // Приклад 1: n = 2
+    int n1 = 2;
+    cout << "F(" << n1 << ") = " << fibonacciRecursive(n1) << endl;
+
+    // Приклад 2: n = 3
+    int n2 = 3;
+    cout << "F(" << n2 << ") = " << fibonacciRecursive(n2) << endl;
+
+    // Приклад 3: n = 4
+    int n3 = 4;
+    cout << "F(" << n3 << ") = " << fibonacciRecursive(n3) << endl;
+
+    return 0;
+}
