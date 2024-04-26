@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+int climbStairsRecursive(int n) {
+    // Базові випадки
+    if (n <= 0) return 0;
+    if (n == 1) return 1;
+    if (n == 2) return 2;
+
+    // Рекурсивні виклики
+    return climbStairsRecursive(n - 1) + climbStairsRecursive(n - 2);
+}
+
+int climbStairsTailRecursiveHelper(int n, int a, int b) {
+    // Базовий випадок
+    if (n == 0) return a;
+
+    // Рекурсивний виклик
+    return climbStairsTailRecursiveHelper(n - 1, b, a + b);
+}
+
+int climbStairsTailRecursive(int n) {
+    return climbStairsTailRecursiveHelper(n, 1, 2);
+}
+
+int main() {
+    // Приклад 1: n = 2
+    int n1 = 2;
+    cout << "For n = " << n1 << ", number of ways: " << climbStairsRecursive(n1) << endl;
+    cout << "For n = " << n1 << ", number of ways (tail recursive): " << climbStairsTailRecursive(n1) << endl;
+
+    // Приклад 2: n = 3
+    int n2 = 3;
+    cout << "For n = " << n2 << ", number of ways: " << climbStairsRecursive(n2) << endl;
+    cout << "For n = " << n2 << ", number of ways (tail recursive): " << climbStairsTailRecursive(n2) << endl;
+
+    return 0;
+}
